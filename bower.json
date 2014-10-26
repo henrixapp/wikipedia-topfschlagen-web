@@ -1,0 +1,32 @@
+{
+  "name": "wiki-topfschlagen-web",
+  "version": "0.0.0",
+  "authors": [
+    "Henrik Reinstädtler <henrixapp@hotmail.com>"
+  ],
+  "description": "Wikipedia-Topfschlagen",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "sigma"
+  ],
+  "license": "PROPERTY",
+  "homepage": "none",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sigma.js": "*",
+    "requirejs": "~2.1.15",
+    "knockoutjs": "~3.2.0",
+    "bootstrap": "~3.2.0",
+    "momentjs": "~2.8.3"
+  }
+}

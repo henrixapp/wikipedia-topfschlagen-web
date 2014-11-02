@@ -4,7 +4,6 @@ require ["../ajax"],(ajax)->
   s = new sigma(
     renderer:
       container: document.getElementById('container')
-      type: 'canvas'
       ,
     settings: setting)
   #sigma.parsers.json('data/data.json',s,()=>
@@ -13,15 +12,25 @@ require ["../ajax"],(ajax)->
   #  CustomShapes.init(s)
   #  s.refresh()
   #  )
-  # Initialize the dragNodes plugin:
-  dragListener = sigma.plugins.dragNodes(s, s.renderers[0])
+  # Initialize the dragNodes plugin:, disabled because of webgl
+  #dragListener = sigma.plugins.dragNodes(s, s.renderers[0])
   #TODO unter button legen
-  ajax("api/distance","POST",(von:prompt("Von?"),zu:prompt("Zu?"))).done((data)->
-    s.graph.clear()
-    s.graph.read(data)
-    s.startForceAtlas2({worker: true, barnesHutOptimize: false})
-    s.refresh()
-    )
+  class SearchView
+    constructor:()->
+      @von= ko.observable ""
+      @zu = ko.observable ""
+      @change = ()=>
+        zw = @von()
+        @von(@zu())
+        @zu(zw)
+      @search =()=>
+        ajax("api/distance","POST",(von:@von(),zu:@zu())).done((data)->
+          s.graph.clear()
+          s.graph.read(data)
+          s.startForceAtlas2({worker: true, barnesHutOptimize: true})
+          s.refresh()
+          )
+  ko.applyBindings(new SearchView(), $('#View')[0]);
 ###
   N=500
   s = new sigma('container')

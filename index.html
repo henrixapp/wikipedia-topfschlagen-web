@@ -9,7 +9,7 @@
 		  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		  <meta name="apple-mobile-web-app-capable" content="yes" />
 		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-		 <script src="bower_components/knockout.js/knockout.js"></script>
+		 <script src="bower_components/knockoutjs/dist/knockout.js"></script>
 		<script src="bower_components/momentjs/moment.js"></script>
 		<script src="bower_components/momentjs/lang/de.js"></script>
 		<script>moment.lang('de');</script>
@@ -25,6 +25,30 @@
 	</head>
 	<body>
 		<div id="Menu">
+		</div>
+		<div class="container" id="View">
+			<h1> WikipediaTopfschlagen</h1>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label>Startartikel</label>
+							<input type="text" placeholder="Startartikel" class="form-control" data-bind="value:von">
+					</div>
+			</div>
+			<div class="col-sm-4">
+				<label>Zielartikel</label>
+						 <div class="form-group">
+						    <input type="text" placeholder="Zielartikel" class="form-control" data-bind="value:zu">
+						</div>
+	      </div>
+			<div class="col-sm-4">
+				<div class="form-group">
+
+				<button class="btn btn-primary btn-block" data-bind="click:search">Suchen</button>
+				<button class="btn btn-success btn-block" data-bind="click:change">Wechseln</button>
+				</div>
+			</div>
+		</div>
 		</div>
 		<div id="container">
 		</div>

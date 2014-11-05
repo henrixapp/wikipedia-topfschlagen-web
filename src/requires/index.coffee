@@ -19,14 +19,22 @@ require ["../ajax"],(ajax)->
     constructor:()->
       @von= ko.observable ""
       @zu = ko.observable ""
+      @Ergebnis = ko.observable false
+      @streckenlaenge = ko.observable 0
+      @elemente = ko.observable 0
+      @wege = ko.observable 0
       @change = ()=>
         zw = @von()
         @von(@zu())
         @zu(zw)
       @search =()=>
-        ajax("api/distance","POST",(von:@von(),zu:@zu())).done((data)->
+        ajax("api/distance","POST",(von:@von(),zu:@zu())).done((data)=>
           s.graph.clear()
-          s.graph.read(data)
+          s.graph.read(data.sigma)
+          @Ergebnis true
+          @streckenlaenge data.stats.laenge
+          @elemente data.sigma.nodes.length
+          @wege data.stats.wege
           s.startForceAtlas2({worker: true, barnesHutOptimize: true})
           s.refresh()
           )

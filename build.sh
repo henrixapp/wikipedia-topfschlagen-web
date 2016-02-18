@@ -1,0 +1,1 @@
+coffee -cbo lib src

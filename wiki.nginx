@@ -1,0 +1,20 @@
+server {
+        listen *:8077;
+	access_log /var/log/access_log_wiki;
+	error_log /home/henrik/error_log_wiki;
+        server_name localhost;
+        location /api/
+{
+#                proxy_set_header X-Real-IP $remote_addr;
+ #               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  #              proxy_set_header Host $http_host;
+   #             proxy_set_header X-NginX-Proxy true;
+                proxy_pass http://localhost:8787/;
+                proxy_redirect http://localhost:8787/ https://$server_name/;
+}
+
+	location  /
+{
+	root /home/henrik/dev/web/wiki-topfschlagen-web/;
+}
+}
